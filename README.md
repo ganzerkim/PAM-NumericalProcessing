@@ -9,7 +9,7 @@ In this section, PAM refocusing code and code execution sequene is briefly expla
 
 #### Data prepration
 
-1. image_kmeans_clustering.py: Classify similar images. Her, it is applied to to find images of similar biological tissues.
+1. image_kmeans_clustering.py: Classify similar images. Here, it is applied to to find images of similar biological tissues.
 2. Dataset_maker.py: Image clipping, Gaussian blurring
 3. data_labeling.py:: data labeling
 
