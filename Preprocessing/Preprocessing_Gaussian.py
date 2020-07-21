@@ -24,7 +24,7 @@ Image.MAX_IMAGE_PIXELS = None # to avoid image size warning
 #%%
 # path configuration / initialization
 base_path = 'D:\\Exp_Data\\PAM_AI\\H&E_dataset\\data\\'
-disp_cluster = True
+disp_cluster = False
 
 #%%
 """
@@ -146,7 +146,7 @@ if not(os.path.exists(savedir)):
     os.mkdir(savedir)
 filelist = [f for f in glob.glob(imgdir + "**/*.png", recursive=True)]
 frame_num = 1
-img_size = 100
+img_size = 50
 for file in filelist:
     img = cv.imread(file, cv.IMREAD_COLOR)
     resize_image = cv.resize(img, dsize = (img_size, img_size), interpolation = cv.INTER_LINEAR)
