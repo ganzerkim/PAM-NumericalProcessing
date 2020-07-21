@@ -162,6 +162,8 @@ Packing Gaussian Sigma Training / Test dataset
 # Specifying image size
 image_w = 100
 image_h = 100
+categories = ["ori","sigma_0.5","sigma_1.0", "sigma_1.5", "sigma_2.0"]
+nb_classes = len(categories)
 pixels = image_w * image_h * 3
 img_path ='D:\\Exp_Data\\PAM_AI\\H&E_dataset\\data\\003_Classification_data'
 # Loaging images
@@ -172,7 +174,10 @@ for idx, cat in enumerate(categories):
     label = [0 for i in range(nb_classes)]
     label[idx] = 1
     # 이미지 
-    image_dir = img_path + "\\" + cat
+    if idx == 0 :
+        image_dir = base_path + '002_GroundTruth'
+    else :
+        image_dir = img_path + "\\" + cat
     files = glob.glob(image_dir + "\\*.png")
     for i, f in enumerate(files):
         img = Image.open(f) 
