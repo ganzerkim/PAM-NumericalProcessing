@@ -33,3 +33,13 @@ In this section, PAM refocusing code and code execution sequene is briefly expla
 
 In this section, code and code execution sequene of Microscopy refocusing which follows diffractive PSF model is briefly explained.
 
+This code is written for providing a simulation result of the paper "Deep learning super resolution based Numerical refocusing in histology image"
+
+Note that this code uses dataset from ANHIR Grand Challenge 'https://anhir.grand-challenge.org/Intro/'
+
+Borovec, J., Kybic, J., et al. (2020). **[ANHIR: Automatic Non-rigid Histological Image Registration Challenge](https://www.researchgate.net/publication/340497388_ANHIR_Automatic_Non-rigid_Histological_Image_Registration_Challenge)**. IEEE Transactions on Medical Imaging (TMI). doi: [10.1109/TMI.2020.2986331](https://doi.org/10.1109/TMI.2020.2986331)
+
+#### Data Prepration
+
+'Preprocessing_Diffraction.py' at folder 'Preprocessing'
+

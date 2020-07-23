@@ -2,7 +2,7 @@
 """
 Created on Tue Jul 21 12:44:22 2020
 
-@author: USER
+@author: MinGeon Kim
 """
 import cv2 as cv
 import os
@@ -59,7 +59,7 @@ images = list(img_feature_vector.values())
 cluster_path = base_path + '001_cluster\\'
 if not(os.path.exists(cluster_path)):
     os.mkdir(cluster_path)
-n_clusters = 4
+n_clusters = 7
 kmeans = KMeans(n_clusters, init = 'k-means++')
 kmeans.fit(images)
 y_kmeans = kmeans.predict(images)
@@ -76,7 +76,7 @@ for fn, cluster in zip(file_names, y_kmeans):
 
 #(Clustrering) image display from cluster_n
 if disp_cluster == True:
-    cluster_n = 1
+    cluster_n = 4
     fig = plt.figure(figsize = (14, 14))
     cluster_disp_path = cluster_path + 'cluster_' + str(cluster_n) + '\\'
     images = [file for file in os.listdir(cluster_disp_path)]
@@ -92,7 +92,7 @@ if disp_cluster == True:
 """
 Image resizing to 100 x 100. Generating groundtruth image applied to training.
 """
-cluster_n = 1
+cluster_n = 4
 imgdir = cluster_path + 'cluster_' + str(cluster_n) 
 savedir =  base_path + '002_GroundTruth\\'
 if not(os.path.exists(savedir)):
@@ -197,6 +197,6 @@ Y = np.array(Y)
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.1)
 xy = (X_train, X_test, y_train, y_test)
 print('>>> data saving ...')
-np.save(base_path + 'sigma_classification_trainingdata_' + time.strftime('%y%m%d')+ '.npy', xy)
+np.save(base_path + 'sigma_classification_trainingdata_' + time.strftime('%y%m%d')+ '.npy', xy, allow_pickle=True)
 print("ok,", len(Y))
     
