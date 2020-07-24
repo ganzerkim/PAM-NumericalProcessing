@@ -2,7 +2,7 @@
 """
 Created on Tue Jul 21 12:44:22 2020
 
-@author: MinGeon Kim
+@author: USER
 """
 import cv2 as cv
 import os
@@ -23,8 +23,8 @@ Image.MAX_IMAGE_PIXELS = None # to avoid image size warning
 
 #%%
 # path configuration / initialization
-base_path = 'D:\\Exp_Data\\PAM_AI\\H&E_dataset\\data\\'
-disp_cluster = False
+base_path = 'D:\\H&E_dataset\\data\\'
+disp_cluster = True
 
 #%%
 """
@@ -195,8 +195,11 @@ Y = np.array(Y)
 # Discrimination between the Training dataset and the Test dataset
 # X: image, Y: label, M_test: Test data, M_train: Training data
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.1)
-xy = (X_train, X_test, y_train, y_test)
+#xy = (X_train, X_test, y_train, y_test)
 print('>>> data saving ...')
-np.save(base_path + 'sigma_classification_trainingdata_' + time.strftime('%y%m%d')+ '.npy', xy, allow_pickle=True)
+np.save(base_path + 'sigma_classification_trainingdata_X_train' + time.strftime('%y%m%d') + '.npy', X_train, allow_pickle=True)
+np.save(base_path + 'sigma_classification_trainingdata_X_test' + time.strftime('%y%m%d') + '.npy', X_test, allow_pickle=True)
+np.save(base_path + 'sigma_classification_trainingdata_Y_train' + time.strftime('%y%m%d') + '.npy', y_train, allow_pickle=True)
+np.save(base_path + 'sigma_classification_trainingdata_Y_test' + time.strftime('%y%m%d') + '.npy', y_test, allow_pickle=True)
 print("ok,", len(Y))
     
