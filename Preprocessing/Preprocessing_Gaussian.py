@@ -23,7 +23,7 @@ Image.MAX_IMAGE_PIXELS = None # to avoid image size warning
 
 #%%
 # path configuration / initialization
-base_path = 'D:\\Exp_Data\\PAM_AI\\H&E_dataset\\data\\'
+base_path = 'D:\\H&E_dataset\\data\\'
 disp_cluster = True
 
 #%%
@@ -59,7 +59,7 @@ images = list(img_feature_vector.values())
 cluster_path = base_path + '001_cluster\\'
 if not(os.path.exists(cluster_path)):
     os.mkdir(cluster_path)
-n_clusters = 4
+n_clusters = 7
 kmeans = KMeans(n_clusters, init = 'k-means++')
 kmeans.fit(images)
 y_kmeans = kmeans.predict(images)
@@ -76,7 +76,7 @@ for fn, cluster in zip(file_names, y_kmeans):
 
 #(Clustrering) image display from cluster_n
 if disp_cluster == True:
-    cluster_n = 1
+    cluster_n = 4
     fig = plt.figure(figsize = (14, 14))
     cluster_disp_path = cluster_path + 'cluster_' + str(cluster_n) + '\\'
     images = [file for file in os.listdir(cluster_disp_path)]
@@ -92,7 +92,7 @@ if disp_cluster == True:
 """
 Image resizing to 100 x 100. Generating groundtruth image applied to training.
 """
-cluster_n = 1
+cluster_n = 4
 imgdir = cluster_path + 'cluster_' + str(cluster_n) 
 savedir =  base_path + '002_GroundTruth\\'
 if not(os.path.exists(savedir)):
@@ -146,7 +146,7 @@ if not(os.path.exists(savedir)):
     os.mkdir(savedir)
 filelist = [f for f in glob.glob(imgdir + "**/*.png", recursive=True)]
 frame_num = 1
-img_size = 100
+img_size = 50
 for file in filelist:
     img = cv.imread(file, cv.IMREAD_COLOR)
     resize_image = cv.resize(img, dsize = (img_size, img_size), interpolation = cv.INTER_LINEAR)
@@ -179,6 +179,7 @@ for idx, cat in enumerate(categories):
     else :
         image_dir = img_path + "\\" + cat
     files = glob.glob(image_dir + "\\*.png")
+    files_clip = files[0:10000].copy()       #10000장까지만 사용
     for i, f in enumerate(files):
         img = Image.open(f) 
         img = img.convert("RGB")
@@ -188,15 +189,19 @@ for idx, cat in enumerate(categories):
         X.append(data)
         Y.append(label)
         if i % 10 == 0:
-            print(i, "\n", data)
+#            print(i, "\n", data)
+            print(i)
 X = np.array(X)
 Y = np.array(Y)
 
 # Discrimination between the Training dataset and the Test dataset
 # X: image, Y: label, M_test: Test data, M_train: Training data
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.1)
-xy = (X_train, X_test, y_train, y_test)
+#xy = (X_train, X_test, y_train, y_test)
 print('>>> data saving ...')
-np.save(base_path + 'sigma_classification_trainingdata_' + time.strftime('%y%m%d')+ '.npy', xy)
+np.save(base_path + 'sigma_classification_trainingdata_X_train' + time.strftime('%y%m%d') + '.npy', X_train, allow_pickle=True)
+np.save(base_path + 'sigma_classification_trainingdata_X_test' + time.strftime('%y%m%d') + '.npy', X_test, allow_pickle=True)
+np.save(base_path + 'sigma_classification_trainingdata_Y_train' + time.strftime('%y%m%d') + '.npy', y_train, allow_pickle=True)
+np.save(base_path + 'sigma_classification_trainingdata_Y_test' + time.strftime('%y%m%d') + '.npy', y_test, allow_pickle=True)
 print("ok,", len(Y))
     

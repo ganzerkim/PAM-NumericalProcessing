@@ -15,6 +15,11 @@ from keras.models import Model
 
 
 #%%
+#def img_clip()
+
+
+
+
 def get_model(layer = 'fc2'):
     
     base_model = VGG16(weights = 'imagenet', include_top = True)
