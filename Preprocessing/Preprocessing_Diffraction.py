@@ -96,7 +96,6 @@ for Z in Z_tot:
 
     for file in filelist:
         img = cv.imread(file, cv.IMREAD_COLOR)     # image read
-#        IMG_B = np.abs(np.fft.ifft2(np.fft.fftshift(np.fft.fft2(img[:,:,0]))))
 #        IMG_B = np.fft.fftshift(np.fft.fft2(img[:,:,0]))
 #        IMG_G = np.fft.fftshift(np.fft.fft2(img[:,:,1]))
 #        IMG_R = np.fft.fftshift(np.fft.fft2(img[:,:,2]))
@@ -119,35 +118,3 @@ for Z in Z_tot:
         name = os.path.basename(file)
         name = os.path.splitext(name)[0]
         cv.imwrite(imgsavdir + '\\' + name + '_' + prop_dist + '.png', img_P)
-        #img_P_n = img_P / np.max(img_P)
-        #plt.subplot(1,2,1); plt.imshow(img)
-        #plt.subplot(1,2,2); plt.imshow(img_P_n)
-         
-#$$ Diffraction calculation , saving
-#note that the color order of CV is (BGR)
-#$$ Diffraction image clipping
-#$$ ref Code     
-#filename = rawdir + '\\' + '00a25e8f04848fe149f609fc10b891fdf67080d7.png'
-#img = cv.imread(filename,cv.IMREAD_COLOR)
-##     IMG_B = np.fft.fftshift(np.fft.fft2(img[:,:,0]))
-##     IMG_G = np.fft.fftshift(np.fft.fft2(img[:,:,1]))
-##     IMG_R = np.fft.fftshift(np.fft.fft2(img[:,:,2]))
-#IMG_B = (np.fft.fft2(img[:,:,0]))
-#IMG_G = (np.fft.fft2(img[:,:,1]))
-#IMG_R = (np.fft.fft2(img[:,:,2]))
-#img_B_P = np.abs(np.fft.ifft2(IMG_B * UU_r))
-#Tx, Ty = np.where(img_B_P>255); img_B_P[Tx,Ty] = 255;
-#Tx, Ty = np.where(img_B_P<0); img_B_P[Tx,Ty] = 0;
-#img_G_P = np.abs(np.fft.ifft2(IMG_G * UU_r))
-#Tx, Ty = np.where(img_G_P>255); img_G_P[Tx,Ty] = 255;
-#Tx, Ty = np.where(img_G_P<0); img_G_P[Tx,Ty] = 0;
-#img_R_P = np.abs(np.fft.ifft2(IMG_R * UU_r))
-#Tx, Ty = np.where(img_R_P>255); img_R_P[Tx,Ty] = 255;
-#Tx, Ty = np.where(img_R_P<0); img_R_P[Tx,Ty] = 0;
-#img_P = np.zeros([imsize,imsize,3])
-#img_P[:,:,0] = img_B_P
-#img_P[:,:,1] = img_G_P
-#img_P[:,:,2] = img_R_P
-##img_P_n = img_P / np.max(img_P)
-#plt.subplot(1,2,1); plt.imshow(img)
-#plt.subplot(1,2,2); plt.imshow(img_P_n)
