@@ -179,6 +179,7 @@ for idx, cat in enumerate(categories):
     else :
         image_dir = img_path + "\\" + cat
     files = glob.glob(image_dir + "\\*.png")
+    files_clip = files[0:10000].copy()       #10000장까지만 사용
     for i, f in enumerate(files):
         img = Image.open(f) 
         img = img.convert("RGB")
@@ -188,7 +189,8 @@ for idx, cat in enumerate(categories):
         X.append(data)
         Y.append(label)
         if i % 10 == 0:
-            print(i, "\n", data)
+#            print(i, "\n", data)
+            print(i)
 X = np.array(X)
 Y = np.array(Y)
 
