@@ -19,6 +19,13 @@ import matplotlib.pyplot as plt
 import cv2 as cv
 from tensorflow.keras.utils import multi_gpu_model                              ###in case of using multi GPU
 
+
+"""
+This code is not optimized to diffraction image classification yet.
+Note that the contents of this code is the same as 'classification_gaussian_sigma_efficientnet.py'
+"""
+
+
 flag_train_analysis = True
 flag_specific_test_image_appl_0 = False
 flag_specific_test_image_appl_1 = False
